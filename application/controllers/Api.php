@@ -11,10 +11,9 @@ class Api extends Rest_Controller {
 
 	public function data_get()
 	{
-		$data = array(
-			'data1' => 1,
-			'data2' => 2,
-		);
+		$this->load->model('Movie');
+		
+		$data = $this->Movie->findall();
 
 		$this->response($data);
 	}
