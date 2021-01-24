@@ -17,7 +17,8 @@ class Movie extends MY_Model {
 		return $query->result();
 	}
 
-	function findRecords($search = array(), $type_movie_id = null, $year = null){
+	function findRecords($search = array(), $type_movie_id = null, $year = null, $offset = 0){
+
 		$this->db->select('m.*, tm.name as type_movie');
 		
 		$this->db->from("$this->table as m");
@@ -39,6 +40,8 @@ class Movie extends MY_Model {
 		if(isset($year)){
 			$this->db->where('year', $year);
 		}
+
+		$this->db->limit(PAGE_SIZE,$offset);
 
 		$query  = $this->db->get();
 

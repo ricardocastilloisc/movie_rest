@@ -21,11 +21,15 @@ class Movies extends Rest_Controller {
 		$type_movie_id = $this->input->get("type_movie_id");
 
 		$year = $this->input->get("year");
+		
+
+		//paginacion 
+		$offset = $this->input->get("offset");
 
 
 		$this->load->model('Movie');
 		
-		$data = $this->Movie->findRecords($search, $type_movie_id, $year);
+		$data = $this->Movie->findRecords($search, $type_movie_id, $year, $offset);
 
 		$this->response($data);
 	}
