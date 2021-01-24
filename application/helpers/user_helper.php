@@ -6,3 +6,9 @@ if(!function_exists('hashPassword'))
 		return password_hash($plainPassword, PASSWORD_DEFAULT);
 	}
 }
+if(!function_exists('verifyHashedPassword'))
+{
+	function verifyHashedPassword($plainPassword, $hashPassword){
+		return password_verify($plainPassword,$hashPassword) ?  TRUE :  FALSE;
+	}
+}

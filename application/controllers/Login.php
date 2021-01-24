@@ -14,7 +14,12 @@ class Login extends CI_Controller
 	}
 	public function index()
 	{
-		echo hashPassword('12345');
+		//echo hashPassword('12345');
+
+		//$hashPassword = hashPassword('12345');
+
+		echo verifyHashedPassword('12345', hashPassword('12345'));
+
 		$this->load->view('user/login');
 	}
 
