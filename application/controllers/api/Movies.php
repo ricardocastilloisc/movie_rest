@@ -11,9 +11,15 @@ class Movies extends Rest_Controller {
 
 	public function show_get()
 	{
+
+		//filtro
+		$type_movie_id = $this->input->get("type_movie_id");
+		$year = $this->input->get("year");
+
+
 		$this->load->model('Movie');
 		
-		$data = $this->Movie->findall();
+		$data = $this->Movie->findRecords($type_movie_id,$year);
 
 		$this->response($data);
 	}
