@@ -9,10 +9,12 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('user');
 		$this->load->library('session');
 	}
 	public function index()
 	{
+		echo hashPassword('12345');
 		$this->load->view('user/login');
 	}
 
