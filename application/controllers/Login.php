@@ -8,10 +8,6 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('User');
-		$this->load->helper('url');
-		$this->load->helper('user');
-		$this->load->library('session');
 	}
 	public function index()
 	{
@@ -21,7 +17,7 @@ class Login extends CI_Controller
 
 		//echo verifyHashedPassword('12345', hashPassword('12345'));
 
-		if (!$this->isLoggedIn()) {
+		if (!isLoggedIn()) {
 			$this->login();
 			$this->load->view('user/login');
 		} else {
@@ -38,14 +34,6 @@ class Login extends CI_Controller
 
 
 
-	private function isLoggedIn()
-	{
-		$user_id = $this->session->userdata('user_id');;
-		if (isset($user_id)) {
-			return true;
-		}
-		return false;
-	}
 
 	private function login()
 	{
