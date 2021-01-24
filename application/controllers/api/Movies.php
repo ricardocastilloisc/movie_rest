@@ -13,7 +13,7 @@ class Movies extends Rest_Controller {
 	{
 		$this->load->model('Movie');
 		
-		$data = $this->Movie->find(1);
+		$data = $this->Movie->findall();
 
 		$this->response($data);
 	}
