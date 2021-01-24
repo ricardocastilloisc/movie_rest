@@ -8,6 +8,7 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('User');
 		$this->load->helper('url');
 		$this->load->helper('user');
 		$this->load->library('session');
@@ -75,7 +76,7 @@ class Login extends CI_Controller
 				redirect("/core/dashboard");
 			}else{
 
-				$this->session->set_flashdata("error", "Email o contraseña incorrecta $user->name");
+				$this->session->set_flashdata("error", "Email o contraseña incorrecta");
 
 				echo "Email o contraseña incorrecta";
 			}
