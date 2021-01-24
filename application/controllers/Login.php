@@ -28,6 +28,10 @@ class Login extends CI_Controller
 
 	public function logout()
 	{
+		if($this->uri->uri_string() == "login/logout")
+		{
+			show_404();
+		}
 		$this->session->sess_destroy();
 		redirect('/login');
 	}
