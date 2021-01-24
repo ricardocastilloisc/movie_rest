@@ -13,7 +13,7 @@ class Api extends Rest_Controller {
 	{
 		$this->load->model('Movie');
 		
-		$data = $this->Movie->findall();
+		$data = $this->Movie->find(1);
 
 		$this->response($data);
 	}
