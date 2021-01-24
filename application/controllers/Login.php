@@ -21,17 +21,21 @@ class Login extends CI_Controller
 
 		//echo verifyHashedPassword('12345', hashPassword('12345'));
 
-		if(!$this->isLoggedIn())
-		{
+		if (!$this->isLoggedIn()) {
 			$this->login();
 			$this->load->view('user/login');
-		
-		}else{
+		} else {
 
 			redirect('/core/dashboard');
 		}
-
 	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('/login');
+	}
+
 
 
 	private function isLoggedIn()
@@ -54,16 +58,14 @@ class Login extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'required|max_length[30]|valid_email|trim');
 
 		if ($this->form_validation->run() == FALSE) {
-	
 		} else {
 			$email = $this->input->post('email');
 
 			$password = $this->input->post('password');
 
-			$user = $this->User->checkLogin($email,$password);
+			$user = $this->User->checkLogin($email, $password);
 
-			if(is_object($user))
-			{
+			if (is_object($user)) {
 				$sessionUser = array(
 					'user_id' => $user->user_id,
 					'email' => $user->email,
@@ -74,7 +76,7 @@ class Login extends CI_Controller
 				$this->session->set_flashdata("success", "Bienvenido $user->name");
 
 				redirect("/core/dashboard");
-			}else{
+			} else {
 
 				$this->session->set_flashdata("error", "Email o contraseña incorrecta");
 
