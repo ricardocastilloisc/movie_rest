@@ -11,6 +11,9 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$view['body'] = "<div>Hola mundo</div>";
+		$view['title'] = "Titulo";
+		$this->parser->parse('core/templates/body', $view);
 		echo "Admin";
 	}
 
